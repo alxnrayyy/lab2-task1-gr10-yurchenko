@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int maxFromDigits(int num) {
-		int digits[10] = {0}; 
+		int digits[10] = {0};
 		int temp = num;
 
 		while (temp > 0) {
@@ -21,18 +22,29 @@ int maxFromDigits(int num) {
 		return result;
 }
 
-int main() {
-		int n;
+int main(int argc, char *argv[]) {
+		if (argc != 2) {
+				printf("Использование: %s <размер массива>\n", argv[0]);
+				return 1;
+		}
 
-		printf("Введите количество чисел: ");
-		scanf("%d", &n);
+		int n = atoi(argv[1]);
+
+		if (n <= 0) {
+				printf("Ошибка: размер массива должен быть положительным числом\n");
+				return 1;
+		}
+
+		srand(time(NULL));
 
 		int arr[n];
 
-		printf("Введите %d натуральных чисел:\n", n);
+		printf("Сгенерированный массив:\n");
 		for (int i = 0; i < n; i++) {
-				scanf("%d", &arr[i]);
+				arr[i] = rand() % 999 + 1; 
+				printf("%d ", arr[i]);
 		}
+		printf("\n");
 
 		printf("\nИсходные числа и результаты:\n");
 		printf("----------------------------\n");
